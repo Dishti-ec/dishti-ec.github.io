@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dishti Patel</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script defer src="../js/index.js"></script>
+</head>
+
+<body>
+
+  <div id="scroll-progress"></div>
+
+  <div id="loader-wrapper">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+  </div>
+
+  <div id="planet-container">
+    <div class="planet"></div>
+  </div>
+  <div id="nebula-container"></div>
+  <div id="star-background"></div>
+  <canvas id="constellation-canvas"></canvas>
+  <div id="shooting-star-container"></div>
+
+  <nav>
+    <div class="nav-links">
+      <a href="index.html" class="stardust-hover">Home</a>
+      <a href="index.html#notes" class="stardust-hover">Notes</a>
+      <a href="index.html#blog" class="stardust-hover">Blog</a>
+      <a href="index.html#lab" class="stardust-hover">Lab</a>
+    </div>
+    <label class="theme-toggle" title="Toggle theme">
+      <input type="checkbox" id="theme-switch">
+      <span class="toggle-slider">
+        <span class="toggle-icon moon">🌙</span>
+        <span class="toggle-icon sun">☀️</span>
+      </span>
+    </label>
+  </nav>
+
+  <header class="hero">
+
+    <video autoplay muted loop class="hero-video">
+      <source src="../assets/videos/stars.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="header-content">
+      <p class="small-intro">Exploring code, creativity and everything in between.</p>
+      <h1 class="fade-up title stardust-hover">Dishti.</h1>
+      <hr style="width:40px; margin: 24px auto; border-color: rgba(255,255,255,0.15);">
+      <p class="fade-up subtitle" id="hero-subtitle">Code • Words • Curiosity </p>
+      <a href="#lab" class="view-work">Experiments</a>
+    </div>
+
+    <a href="#intro" class="scroll-indicator" aria-label="Scroll down">
+      <span>Scroll</span>
+      <div class="scroll-indicator-arrow"></div>
+    </a>
+
+    <!-- side decorative figures removed -->
+
+  </header>
+
+  <main class="container">
+
+
+    <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+    <section id="intro" class="reveal">
+      <h2>Helloooo Duniya!!!</h2>
+      <p>
+        Here's a wanderer of dreams, a girl sometimes buried deep in the pages of her books or writing the stories of
+        her own. Now cast as a student of Computer Science and Engineering. Welp, the world of stories is now replaced
+        by the world of repositories. Surf down to be the audience of this little creature on earth.
+      </p>
+    </section>
+
+
+    <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+    <section id="notes" class="reveal">
+      <h2>Notes</h2>
+      <!-- New Book Metaphor Structure -->
+      <div class="book-section-wrapper">
+        <div class="book-sticky-container">
+          <div class="book-container">
+            <!-- Left Panel: The Cover -->
+            <div class="book-cover-panel">
+              <div class="book-spine"></div>
+              <div class="book-cover-visual"></div>
+            </div>
+
+            <!-- Right Panel: The Content -->
+            <div class="book-content-panel">
+              <!-- Page 1: Intro -->
+              <div class="book-page page-1 active">
+                <p class="book-text-large">Notes are the quiet echoes of a loud mind.</p>
+              </div>
+
+              <!-- Page 2: Context -->
+              <div class="book-page page-2">
+                <p>Like a notebook filled over time — from front-page notes to back-page recommendations — everything I learn, think, and return to lives here..</p>
+              </div>
+
+              <!-- Page 3: Final Link -->
+              <div class="book-page page-3">
+                <p>Step inside.</p>
+                <a href="notes.html" class="book-link">Open Notes &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+    <section id="blog" class="reveal">
+      <h2 class="slide-in from-left">Galactic Blog</h2>
+      <p class="blog-subtitle">A small constellation of thoughts, updates, and cosmic code notes.</p>
+      <div id="blog-container" class="blog-grid"></div>
+      <script src="https://giscus.app/client.js"
+        data-repo="dishti-ec/Dishti-Patel"
+        data-repo-id="R_kgDOQ68A2g"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOQ68A2s4C6KSU"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+    </section>
+
+    <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+    <section id="lab" class="reveal">
+      <h2 class="slide-in from-left">Lab</h2>
+      <div class="projects">
+        <article class="project-card reveal delay-100">
+          <img class="project-thumb" src="../assets/images/Solaris-Logo.png" alt="Solaris Nexus screenshot">
+          <span class="project-tag tag-progress">In Progress</span>
+          <h3>Solaris Nexus</h3>
+          <p>Solaris Nexus is a small project exploring interactive visuals, layout systems, and micro-interactions.
+            Click through to read the project's introduction, goals, and progress notes.</p>
+          <a href="lab/Solaris-Nexus.html">Open lab</a>
+        </article>
+        <article class="project-card reveal delay-200">
+          <img class="project-thumb" src="../assets/images/IMG-20251018-WA0022.jpg" alt="Lab Two screenshot">
+          <span class="project-tag">Live</span>
+          <h3>Portfolio Website</h3>
+          <p>A website to showcase my projects and skills.</p>
+          <a href="lab/Portfolio-Lab.html">Open lab</a>
+        </article>
+        <article class="project-card reveal delay-300">
+          <img class="project-thumb" src="../assets/images/WIN_20250913_00_12_50_Pro.jpg" alt="Lab Three screenshot">
+          <span class="project-tag tag-concept">Concept</span>
+          <h3>RemoTree</h3>
+          <p>Small practice utilities demonstrating problem solving and logic.</p>
+          <a href="#lab">Open lab</a>
+        </article>
+      </div>
+    </section>
+
+
+    <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+    <section id="journey" class="reveal">
+      <h2 class="slide-in from-left">The Journey</h2>
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <!-- Timeline Item 1 -->
+       <div class="timeline-item left">
+  <div class="timeline-star"></div>
+  <div class="timeline-content">
+    <h3>School Years</h3>
+    <h4>Writer’s Milestone</h4>
+    <p>Secured 1st place in an essay writing competition, earning a prize of ₹50,000. A defining moment that shaped my confidence and voice as a writer.</p>
+  </div>
+</div>
+
+<div class="timeline-item right">
+  <div class="timeline-star"></div>
+  <div class="timeline-content">
+    <h3>Early Exploration</h3>
+    <h4>Understanding Chatbots & AI</h4>
+    <p>Began exploring how chatbots work — diving into the logic behind conversations and building a foundation in how machines interpret and respond.</p>
+  </div>
+</div>
+
+<div class="timeline-item left">
+  <div class="timeline-star"></div>
+  <div class="timeline-content">
+    <h3>2023 – Present</h3>
+    <h4>Computer Science Student</h4>
+    <p>Building a strong foundation in algorithms, data structures, and software engineering while learning how ideas transform into real systems.</p>
+  </div>
+</div>
+
+<div class="timeline-item right">
+  <div class="timeline-star"></div>
+  <div class="timeline-content">
+    <h3>2025</h3>
+    <h4>Hardware & IoT Experiments</h4>
+    <p>Worked on projects combining electronics and programming, exploring how software interacts with the physical world through sensors and intelligent systems.</p>
+  </div>
+</div>
+
+<div class="timeline-item left">
+  <div class="timeline-star"></div>
+  <div class="timeline-content">
+    <h3>2026</h3>
+    <h4>IIT Roorkee E-Summit</h4>
+    <p>Selected for the CaseQuest competition at IIT Roorkee, gaining exposure to real-world problem solving, innovation, and collaborative thinking.</p>
+  </div>
+</div>
+
+<div class="timeline-item right">
+  <div class="timeline-star"></div>
+  <div class="timeline-content">
+    <h3>Ongoing</h3>
+    <h4>Web Development & Creative Coding</h4>
+    <p>Designing and building interactive web experiences, moving from static pages to dynamic, expressive interfaces that reflect both logic and creativity.</p>
+  </div>
+</div>
+
+<div class="timeline-item left">
+  <div class="timeline-star"></div>
+  <div class="timeline-content">
+    <h3>Future</h3>
+    <h4>Full Stack & Creative Technologist</h4>
+    <p>Aiming to grow as a developer who blends engineering with creativity — building scalable applications while continuing to explore writing, design, and intelligent systems.</p>
+  </div>
+</div>
+
+      </div>
+    </section>
+
+    <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+    <section id="skills" class="reveal">
+      <h2 class="slide-in from-left">Orbiting Skills</h2>
+      <div class="orbit-container">
+        <!-- Central Sun/Core -->
+        <div class="orbit-center">
+          <div class="core-text">Tech<br>Stack</div>
+        </div>
+
+        <!-- Orbit 1 (Inner) -->
+        <div class="orbit-ring ring-1">
+          <div class="planet-skill skill-html" title="HTML5">HTML</div>
+          <div class="planet-skill skill-css" title="CSS3">CSS</div>
+        </div>
+
+        <!-- Orbit 2 (Middle) -->
+        <div class="orbit-ring ring-2">
+          <div class="planet-skill skill-js" title="JavaScript">JS</div>
+          <div class="planet-skill skill-git" title="Git">Git</div>
+        </div>
+
+        <!-- Orbit 3 (Outer) -->
+        <div class="orbit-ring ring-3">
+          <div class="planet-skill skill-node" title="Node.js">Node</div>
+          <div class="planet-skill skill-react" title="React">React</div>
+          <div class="planet-skill skill-python" title="Python">Py</div>
+        </div>
+      </div>
+      <p style="text-align:center; margin-top:20px; color:var(--text-muted); font-size:0.9rem;">(Hover to pause orbit)
+      </p>
+    </section>
+
+
+    <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+    <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+    <section id="contact" class="reveal">
+      <div class="event-horizon-container">
+        <div class="black-hole">
+          <div class="accretion-disk"></div>
+        </div>
+
+        <div class="contact-content">
+          <h2 class="slide-in from-left">Event Horizon</h2>
+          <p>Send a transmission across the galaxy. It will reach me... eventually.</p>
+
+          <form id="contact-form" class="contact-form">
+            <div class="input-group">
+              <input type="text" id="name" required placeholder=" ">
+              <label for="name">Explorer Name</label>
+            </div>
+
+            <div class="input-group">
+              <input type="email" id="email" required placeholder=" ">
+              <label for="email">Frequency (Email)</label>
+            </div>
+
+            <div class="input-group">
+              <textarea id="message" required placeholder=" " rows="4"></textarea>
+              <label for="message">Transmission Data</label>
+            </div>
+
+            <button type="submit" class="send-btn">
+              <span>Initiate Transmission</span>
+              <div class="btn-shine"></div>
+            </button>
+          </form>
+
+          <div id="success-message" class="hidden">
+            <h3>Transmission Received</h3>
+            <p>Signal acquired by the singularity.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="blog-modal" class="blog-modal hidden" aria-hidden="true">
+    <div class="blog-modal-overlay" id="blog-modal-overlay"></div>
+    <div class="blog-modal-content" role="dialog" aria-modal="true" aria-labelledby="blog-modal-title">
+      <button class="blog-modal-close" id="blog-modal-close" aria-label="Close blog details">✕</button>
+      <h3 id="blog-modal-title">Blog title</h3>
+      <p class="blog-modal-date" id="blog-modal-date">Date</p>
+      <p id="blog-modal-body"></p>
+      <div id="blog-comment-section" class="blog-comment-section">
+        <h4>Comments</h4>
+        <div id="blog-comments-list" class="blog-comments-list"></div>
+        <form id="blog-comment-form" class="blog-comment-form">
+          <textarea id="blog-comment-input" rows="3" placeholder="Share your thought" required></textarea>
+          <button type="submit" class="blog-btn">Submit Comment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:dishti@example.com">Contact</a>
+    </div>
+    <p>Built slowly, still learning &nbsp;✦&nbsp; &copy; 2026 Dishti</p>
+  </footer>
+
+</body>
+
+</html>

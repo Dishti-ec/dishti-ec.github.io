@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Notes — Dishti's Scribbles</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400;700&family=Orbitron:wght@400;700&family=Caveat:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="notes-page">
+
+    <!-- Loader (matches main site) -->
+    <div id="loader-wrapper">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+    <!-- Background layers -->
+    <div id="star-background"></div>
+    <div id="shooting-star-container"></div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-comet"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <nav id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="notes.html" class="active">Notes</a>
+        <a href="index.html#lab">Lab</a>
+    </nav>
+
+    <!-- HERO -->
+    <header class="notes-hero">
+        <div class="notes-hero-content">
+            <p class="notes-eyebrow fade-up">✦ &nbsp; A living notebook &nbsp; ✦</p>
+            <h1 class="fade-up notes-title">Notes</h1>
+            <p class="fade-up notes-subtitle">
+                Thoughts caught mid-flight — concepts untangled, films felt, music heard,<br>
+                and everything in between worth remembering.
+            </p>
+        </div>
+        <div class="hero-lines" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <!-- FILTER TABS -->
+    <div class="notes-filter-wrapper">
+        <div class="notes-filter-tabs" role="tablist" aria-label="Filter notes by category">
+            <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="filter-tab" data-filter="tech" role="tab" aria-selected="false">Tech</button>
+            <button class="filter-tab" data-filter="design" role="tab" aria-selected="false">Design</button>
+            <button class="filter-tab" data-filter="books" role="tab" aria-selected="false">Books</button>
+            <button class="filter-tab" data-filter="films" role="tab" aria-selected="false">Films</button>
+            <button class="filter-tab" data-filter="music" role="tab" aria-selected="false">Music</button>
+        </div>
+        <p class="notes-count"><span id="visible-count">8</span> entries</p>
+    </div>
+
+    <!-- NOTE CARDS -->
+    <main class="notes-grid-wrapper">
+        <div class="notes-grid" id="notes-grid">
+
+            <article class="note-card reveal" data-category="tech" data-id="0">
+                <div class="card-inner">
+                    <div class="card-top">
+                        <span class="note-type">🧪 Learning</span>
+                        <span class="note-tag tech-tag">Tech</span>
+                    </div>
+                    <h3 class="card-title">How CSS Grid Actually Works</h3>
+                    <p class="card-preview">I spent two days confused about implicit vs explicit grids. Here's the mental model that finally made it click for me, with diagrams.</p>
+                    <div class="card-footer">
+                        <span class="card-meta">Apr 1, 2026 · 4 min read</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="note-card reveal delay-100" data-category="films" data-id="1">
+                <div class="card-inner">
+                    <div class="card-top">
+                        <span class="note-type">💭 Reflection</span>
+                        <span class="note-tag films-tag">Films</span>
+                    </div>
+                    <h3 class="card-title">Everything Everywhere All at Once</h3>
+                    <p class="card-preview">A film about laundry and taxes that somehow made me cry twice. On grief, multiverses, and why absurdism is the most honest response to existence.</p>
+                    <div class="card-footer">
+                        <span class="card-meta">Mar 22, 2026 · 3 min read</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="note-card reveal delay-200" data-category="books" data-id="2">
+                <div class="card-inner">
+                    <div class="card-top">
+                        <span class="note-type">🎧 Recommendation</span>
+                        <span class="note-tag books-tag">Books</span>
+                    </div>
+                    <h3 class="card-title">Meditations by Marcus Aurelius</h3>
+                    <p class="card-preview">Notes written to himself, never meant to be published. A Roman emperor reminding himself to be decent. The most human thing I've read in years.</p>
+                    <div class="card-footer">
+                        <span class="card-meta">Mar 14, 2026 · 5 min read</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="note-card reveal" data-category="music" data-id="3">
+                <div class="card-inner">
+                    <div class="card-top">
+                        <span class="note-type">🎧 Recommendation</span>
+                        <span class="note-tag music-tag">Music</span>
+                    </div>
+                    <h3 class="card-title">The Album I Can't Stop Returning To</h3>
+                    <p class="card-preview">Frank Ocean's Blonde is a study in restraint. No drums for half the record. Just space, reverb, and feeling. Here's why silence is the most expressive instrument.</p>
+                    <div class="card-footer">
+                        <span class="card-meta">Mar 5, 2026 · 3 min read</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="note-card reveal delay-100" data-category="design" data-id="4">
+                <div class="card-inner">
+                    <div class="card-top">
+                        <span class="note-type">📘 Concept</span>
+                        <span class="note-tag design-tag">Design</span>
+                    </div>
+                    <h3 class="card-title">Why White Space Is Not Empty</h3>
+                    <p class="card-preview">Designers are taught to fill. But the best interfaces breathe. On negative space as a design decision, not an oversight — and what it communicates about hierarchy.</p>
+                    <div class="card-footer">
+                        <span class="card-meta">Feb 28, 2026 · 4 min read</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="note-card reveal delay-200" data-category="tech" data-id="5">
+                <div class="card-inner">
+                    <div class="card-top">
+                        <span class="note-type">🧪 Learning</span>
+                        <span class="note-tag tech-tag">Tech</span>
+                    </div>
+                    <h3 class="card-title">JavaScript Closures, Demystified</h3>
+                    <p class="card-preview">Every tutorial says "closures capture the outer scope." But what does that actually mean in memory? Let's trace exactly what the engine holds onto, and why.</p>
+                    <div class="card-footer">
+                        <span class="card-meta">Feb 18, 2026 · 6 min read</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="note-card reveal" data-category="films" data-id="6">
+                <div class="card-inner">
+                    <div class="card-top">
+                        <span class="note-type">💭 Reflection</span>
+                        <span class="note-tag films-tag">Films</span>
+                    </div>
+                    <h3 class="card-title">Arrival &amp; the Shape of Time</h3>
+                    <p class="card-preview">Denis Villeneuve made a film about language that doubles as a grief parable. The twist isn't a trick — it's a philosophy. On how we narrate our own timelines.</p>
+                    <div class="card-footer">
+                        <span class="card-meta">Feb 10, 2026 · 4 min read</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="note-card reveal delay-100" data-category="design" data-id="7">
+                <div class="card-inner">
+                    <div class="card-top">
+                        <span class="note-type">📘 Concept</span>
+                        <span class="note-tag design-tag">Design</span>
+                    </div>
+                    <h3 class="card-title">Typography as Voice</h3>
+                    <p class="card-preview">Before a user reads a single word, the typeface has already spoken. Serif vs sans is a personality choice. Here's how I think about type as the tone of a product.</p>
+                    <div class="card-footer">
+                        <span class="card-meta">Jan 30, 2026 · 3 min read</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- FULL PAGE VIEW -->
+    <div id="note-fullpage" class="note-fullpage hidden" aria-modal="true" role="dialog" aria-label="Full note view">
+        <div class="note-fullpage-overlay" id="note-fp-overlay"></div>
+        <div class="note-fullpage-content">
+            <div class="fp-header">
+                <div class="fp-meta-row">
+                    <span id="fp-type" class="fp-type-label"></span>
+                    <span id="fp-tag" class="fp-tag-label"></span>
+                </div>
+                <h2 id="fp-title" class="fp-title"></h2>
+                <p id="fp-meta" class="fp-meta"></p>
+                <div class="fp-divider"></div>
+            </div>
+            <div id="fp-body" class="fp-body"></div>
+            <div class="fp-divider"></div>
+            <button class="fp-back-btn" id="fp-close">← Back to Notes</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DISHTI — Notes</p>
+    </footer>
+
+    <script src="../js/index.js" defer></script>
+    <script src="../js/notes.js" defer></script>
+</body>
+
+</html>
