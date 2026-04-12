@@ -983,41 +983,111 @@ function initLabOrbitScroll() {
   const cards = document.querySelectorAll('.lab-orbit-card');
   
   if (!scrollSection || !track || cards.length === 0) return;
+
+  // Add scroll reveal for the section itself
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      scrollSection.classList.add('active');
+    }
+  }, { threshold: 0.1 });
+  observer.observe(scrollSection);
+
+  // Visibility Check to save CPU on RAF
+  let isVisible = false;
+  const visibilityObserver = new IntersectionObserver((entries) => {
+    isVisible = entries[0].isIntersecting;
+  }, { rootMargin: "500px" });
+  visibilityObserver.observe(scrollSection);
+
+  let currentTargetX = 0;
+  let currentX = 0;
   
-  function updateScroll() {
+  function lerp(start, end, factor) {
+    return start + (end - start) * factor;
+  }
+  
+  function updateTargetScroll() {
     const sectionTop = scrollSection.getBoundingClientRect().top;
     const maxScroll = scrollSection.offsetHeight - window.innerHeight;
     
-    let progress = 0;
+    let progressRatio = 0;
     if (sectionTop <= 0) {
-      progress = Math.min(1, Math.abs(sectionTop) / maxScroll);
+      // Complete the horizontal slide by 75% of the vertical scroll depth.
+      // This leaves 25% of "dead space" locking the view perfectly at the end indicator.
+      progressRatio = Math.min(1, Math.abs(sectionTop) / (maxScroll * 0.75));
     }
     
+    // Exact mapping for Track width so we reach the end perfectly 
     const trackWidth = track.scrollWidth;
     const viewportWidth = window.innerWidth;
     const maxTranslate = Math.max(0, trackWidth - viewportWidth);
     
-    const translateX = progress * maxTranslate;
-    track.style.transform = `translate3d(-${translateX}px, 0, 0)`;
-    
-    const centerScreen = viewportWidth / 2;
-    
-    cards.forEach(card => {
-      const rect = card.getBoundingClientRect();
-      const cardCenter = rect.left + (rect.width / 2);
-      const distance = Math.abs(centerScreen - cardCenter);
+    currentTargetX = progressRatio * maxTranslate;
+  }
+
+  window.addEventListener('scroll', updateTargetScroll, { passive: true });
+  window.addEventListener('resize', updateTargetScroll, { passive: true });
+  
+  function tick() {
+    if (isVisible) {
+      // 7.5% per frame lerp for buttery inertia
+      currentX = lerp(currentX, currentTargetX, 0.075);
+
+      const viewportWidth = window.innerWidth;
+      const trackWidth = track.scrollWidth;
+      const maxTranslate = Math.max(0.1, trackWidth - viewportWidth);
+      let smoothProgressRatio = currentX / maxTranslate;
       
-      if (distance < 280) {
-        card.classList.add('focused');
-      } else {
-        card.classList.remove('focused');
-      }
-    });
+      // Master track movement
+      track.style.transform = `translate3d(-${currentX}px, 0, 0)`;
+
+      const center = window.innerWidth / 2;
+      
+      cards.forEach((card, i) => {
+        // Per-card parallax depth
+        const speed = 0.5 + i * 0.08;
+        const parallaxX = (smoothProgressRatio * 300) * (speed - 1); 
+        
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + (rect.width / 2);
+        const distance = Math.abs(center - cardCenter);
+        
+        // Cubic falloff (t * t * t) for smoother organic scale curve
+        const normDist = Math.min(1, distance / 900);
+        const scale = Math.max(0.7, 1 - (normDist * normDist * normDist));
+        const opacityVal = Math.max(0.1, 1 - distance / 1200);
+
+        // Applying dynamic styling without CSS transition interference!
+        card.style.setProperty('--card-x', `${parallaxX}px`);
+        card.style.setProperty('--card-scale', scale);
+        card.style.setProperty('--card-opacity', opacityVal);
+        
+        if (distance < 280) {
+          card.classList.add('focused');
+        } else {
+          card.classList.remove('focused');
+        }
+      });
+    }
+    
+    requestAnimationFrame(tick);
   }
   
-  window.addEventListener('scroll', updateScroll, { passive: true });
-  window.addEventListener('resize', updateScroll, { passive: true });
-  
-  // Trigger initially to set classes
-  setTimeout(updateScroll, 100);
+  // Click to continue arrow logic
+  const endIndicator = document.querySelector('.lab-end-indicator');
+  if (endIndicator) {
+    endIndicator.style.cursor = 'pointer';
+    endIndicator.addEventListener('click', () => {
+      // Find the end of this current scroll section and smoothly jump past it
+      const targetScrollPos = scrollSection.offsetTop + scrollSection.offsetHeight;
+      window.scrollTo({
+        top: targetScrollPos,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // Trigger initially to set positions
+  updateTargetScroll();
+  requestAnimationFrame(tick);
 }

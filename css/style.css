@@ -2881,16 +2881,24 @@ body.custom-cursor-active .timeline-content {
    ============================================================ */
 
 .lab-scroll-section {
-  height: 400vh;
+  height: 800vh;
   position: relative;
-  z-index: 10;
+  z-index: 999;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.lab-scroll-section.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .lab-sticky {
   position: sticky;
   top: 0;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -2898,51 +2906,67 @@ body.custom-cursor-active .timeline-content {
 }
 
 .lab-orbit-title {
-  position: absolute;
-  top: 15vh;
-  left: 10vw;
+  position: relative;
+  width: 100%;
+  text-align: center;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  color: #7ee7ff;
-  opacity: 0.5;
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  color: #fff;
+  opacity: 1;
+  text-shadow: 0 0 15px rgba(126, 231, 255, 0.4);
   pointer-events: none;
-  z-index: 0;
+  z-index: 1000;
+  margin: 0;
+  padding-top: 5vh;
+}
+
+.lab-track-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .lab-track {
   display: flex;
   align-items: center;
-  gap: 8vw;
-  padding-left: calc(50vw - 175px);
-  padding-right: calc(50vw - 175px);
+  gap: 6vw;
+  padding-left: calc(50vw - 140px); /* Adjusted for 280px card center */
+  padding-right: calc(50vw - 140px);
   height: max-content;
   will-change: transform;
+  margin-top: 5vh; 
+  position: relative;
 }
 
 .lab-orbit-card {
   position: relative;
-  width: 350px;
-  min-width: 350px;
+  width: 280px;  /* Smaller cards */
+  min-width: 280px;
   flex-shrink: 0;
-  background: rgba(10, 15, 25, 0.4);
+  background: rgba(10, 15, 25, 0.6); 
   border: 1px solid rgba(126, 231, 255, 0.1);
   border-radius: 16px;
-  padding: 30px;
-  backdrop-filter: blur(10px);
+  padding: 24px;
+  backdrop-filter: blur(15px);
   transform-style: preserve-3d;
-  transition: opacity 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), 
+  will-change: transform;
+  
+  /* REMOVED scale and opacity. JS frames provide their smoothing. CSS transitions caused severe stutter! */
+  transition: translate 0.3s ease,
               border-color 0.3s ease, 
               box-shadow 0.3s ease;
-  opacity: 0.4;
-  /* Transform is applied heavily by JS */
-}
-
-.lab-orbit-card:nth-child(odd) {
-  margin-top: -160px;
-}
-
-.lab-orbit-card:nth-child(even) {
-  margin-top: 160px;
+              
+  opacity: var(--card-opacity, 0.4);
+  
+  /* Transform is owned completely by JS for scroll, NO CSS transition fights! */
+  transform: translateX(var(--card-x, 0));
+  
+  /* Dynamic scale from JS */
+  scale: var(--card-scale, 1);
+  translate: 0 0;
 }
 
 .lab-orbit-glow {
@@ -2954,6 +2978,22 @@ body.custom-cursor-active .timeline-content {
   transition: opacity 0.5s ease;
   pointer-events: none;
   z-index: -1;
+}
+
+/* Hover Micro Interactions */
+
+.lab-orbit-card:hover {
+  opacity: 1 !important;
+  /* Animate natively using translate and scale instead of transform overrides */
+  translate: 0 -25px;
+  scale: 1.05 !important;
+  z-index: 20;
+  border-color: rgba(126, 231, 255, 0.6);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(126, 231, 255, 0.3);
+}
+
+.lab-orbit-card:hover .lab-orbit-glow {
+  opacity: 1;
 }
 
 /* Styles applied dynamically by JS based on center proximity */
@@ -2982,7 +3022,8 @@ body.custom-cursor-active .timeline-content {
   pointer-events: none;
 }
 
-.lab-orbit-card.focused .orbit-cta {
+.lab-orbit-card.focused .orbit-cta,
+.lab-orbit-card:hover .orbit-cta {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
@@ -2991,6 +3032,38 @@ body.custom-cursor-active .timeline-content {
 .orbit-cta:hover {
   background: rgba(126, 231, 255, 0.15);
   box-shadow: 0 0 15px rgba(126, 231, 255, 0.4);
+}
+
+/* End Indicator */
+.lab-end-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 250px;
+  color: #7ee7ff;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  opacity: 0.7;
+  gap: 15px;
+  text-align: center;
+  animation: pulse-end 3s infinite alternate;
+}
+
+.lab-end-indicator .end-arrow {
+  font-size: 2.5rem;
+  font-family: sans-serif;
+  animation: float-right 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-end {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.8; text-shadow: 0 0 15px rgba(126, 231, 255, 0.4); }
+}
+
+@keyframes float-right {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(10px); }
 }
 
 .project-thumb-placeholder {
