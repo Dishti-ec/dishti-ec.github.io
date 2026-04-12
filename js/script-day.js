@@ -10,6 +10,7 @@
       initContactForm();
       initBlogSystem();
       initBookScroll();
+      initLabOrbitScroll();
       initCursor();
       initActiveNav();
       initThemeToggle();
@@ -297,4 +298,107 @@
         }
       }
       window.addEventListener('scroll', onScrollNav, { passive: true });
+    }
+
+    /* ── Horizontal lab orbit scroll (parity with dark index.js) ── */
+    function initLabOrbitScroll() {
+      const scrollSection = document.querySelector('.lab-scroll-section');
+      const track = document.getElementById('lab-track');
+      const cards = document.querySelectorAll('.lab-orbit-card');
+
+      if (!scrollSection || !track || cards.length === 0) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          scrollSection.classList.add('active');
+        }
+      }, { threshold: 0.1 });
+      observer.observe(scrollSection);
+
+      let isVisible = false;
+      const visibilityObserver = new IntersectionObserver((entries) => {
+        isVisible = entries[0].isIntersecting;
+      }, { rootMargin: '500px' });
+      visibilityObserver.observe(scrollSection);
+
+      let currentTargetX = 0;
+      let currentX = 0;
+
+      function lerp(start, end, factor) {
+        return start + (end - start) * factor;
+      }
+
+      function updateTargetScroll() {
+        const sectionTop = scrollSection.getBoundingClientRect().top;
+        const maxScroll = scrollSection.offsetHeight - window.innerHeight;
+
+        let progressRatio = 0;
+        if (sectionTop <= 0) {
+          progressRatio = Math.min(1, Math.abs(sectionTop) / (maxScroll * 0.75));
+        }
+
+        const trackWidth = track.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        const maxTranslate = Math.max(0, trackWidth - viewportWidth);
+
+        currentTargetX = progressRatio * maxTranslate;
+      }
+
+      window.addEventListener('scroll', updateTargetScroll, { passive: true });
+      window.addEventListener('resize', updateTargetScroll, { passive: true });
+
+      function tick() {
+        if (isVisible) {
+          currentX = lerp(currentX, currentTargetX, 0.075);
+
+          const viewportWidth = window.innerWidth;
+          const trackWidth = track.scrollWidth;
+          const maxTranslate = Math.max(0.1, trackWidth - viewportWidth);
+          const smoothProgressRatio = currentX / maxTranslate;
+
+          track.style.transform = `translate3d(-${currentX}px, 0, 0)`;
+
+          const center = window.innerWidth / 2;
+
+          cards.forEach((card, i) => {
+            const speed = 0.5 + i * 0.08;
+            const parallaxX = (smoothProgressRatio * 300) * (speed - 1);
+
+            const rect = card.getBoundingClientRect();
+            const cardCenter = rect.left + (rect.width / 2);
+            const distance = Math.abs(center - cardCenter);
+
+            const normDist = Math.min(1, distance / 900);
+            const scale = Math.max(0.7, 1 - (normDist * normDist * normDist));
+            const opacityVal = Math.max(0.1, 1 - distance / 1200);
+
+            card.style.setProperty('--card-x', `${parallaxX}px`);
+            card.style.setProperty('--card-scale', scale);
+            card.style.setProperty('--card-opacity', opacityVal);
+
+            if (distance < 280) {
+              card.classList.add('focused');
+            } else {
+              card.classList.remove('focused');
+            }
+          });
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      const endIndicator = document.querySelector('.lab-end-indicator');
+      if (endIndicator) {
+        endIndicator.style.cursor = 'pointer';
+        endIndicator.addEventListener('click', () => {
+          const targetScrollPos = scrollSection.offsetTop + scrollSection.offsetHeight;
+          window.scrollTo({
+            top: targetScrollPos,
+            behavior: 'smooth'
+          });
+        });
+      }
+
+      updateTargetScroll();
+      requestAnimationFrame(tick);
     }

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dishti Patel — Day</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style-day.css">
 </head>
 
@@ -48,8 +49,9 @@
       <span>Scroll</span>
       <div class="scroll-indicator-arrow"></div>
     </a>
-  </header> 
+  </header>
 
+  <main class="container">
     <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
 
     <section id="intro" class="reveal">
@@ -97,30 +99,75 @@
 
     <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
 
-    <section id="lab" class="reveal">
-      <h2 class="slide-in from-left">Lab</h2>
-      <div class="projects">
-        <article class="project-card reveal delay-100">
-          <img class="project-thumb" src="../assets/images/Solaris-Logo.png" alt="Solaris Nexus screenshot">
-          <span class="project-tag tag-progress">In Progress</span>
-          <h3>Solaris Nexus</h3>
-          <p>Solaris Nexus is a small project exploring interactive visuals, layout systems, and micro-interactions. Click through to read the project's introduction, goals, and progress notes.</p>
-          <a href="../dark/lab/Solaris-Nexus.html">Open lab</a>
-        </article>
-        <article class="project-card reveal delay-200">
-          <img class="project-thumb" src="../assets/images/IMG-20251018-WA0022.jpg" alt="Lab Two screenshot">
-          <span class="project-tag">Live</span>
-          <h3>Portfolio Website</h3>
-          <p>A website to showcase my projects and skills.</p>
-          <a href="../dark/lab/Portfolio-Lab.html">Open lab</a>
-        </article>
-        <article class="project-card reveal delay-300">
-          <img class="project-thumb" src="../assets/images/WIN_20250913_00_12_50_Pro.jpg" alt="Lab Three screenshot">
-          <span class="project-tag tag-concept">Concept</span>
-          <h3>RemoTree</h3>
-          <p>Small practice utilities demonstrating problem solving and logic.</p>
-          <a href="../dark/lab/RemoTree.html">Open lab</a>
-        </article>
+    <section id="lab" class="lab-scroll-section">
+      <div class="lab-sticky">
+        <h2 class="lab-orbit-title">Lab Projects</h2>
+        <div class="lab-track" id="lab-track">
+          <article class="lab-orbit-card">
+            <div class="lab-orbit-glow"></div>
+            <img class="project-thumb" src="../assets/images/Solaris-Logo.png" alt="Solaris Nexus">
+            <span class="project-tag tag-progress">In Progress</span>
+            <h3>Solaris Nexus</h3>
+            <p>Exploring interactive visuals, layout systems, and micro-interactions.</p>
+            <div class="lab-cta-wrap">
+              <a href="../dark/lab/Solaris-Nexus.html" class="orbit-cta">Enter System &rarr;</a>
+            </div>
+          </article>
+          <article class="lab-orbit-card">
+            <div class="lab-orbit-glow"></div>
+            <img class="project-thumb" src="../assets/images/IMG-20251018-WA0022.jpg" alt="Portfolio Website">
+            <span class="project-tag">Live</span>
+            <h3>Portfolio Website</h3>
+            <p>A personal showcase designed with a dark, immersive cosmic theme.</p>
+            <div class="lab-cta-wrap">
+              <a href="../dark/lab/Portfolio-Lab.html" class="orbit-cta">Enter System &rarr;</a>
+            </div>
+          </article>
+          <article class="lab-orbit-card">
+            <div class="lab-orbit-glow"></div>
+            <img class="project-thumb" src="../assets/images/WIN_20250913_00_12_50_Pro.jpg" alt="RemoTree">
+            <span class="project-tag tag-concept">Concept</span>
+            <h3>RemoTree</h3>
+            <p>Small practice utilities demonstrating problem solving and logic.</p>
+            <div class="lab-cta-wrap">
+              <a href="../dark/lab/RemoTree.html" class="orbit-cta">Enter System &rarr;</a>
+            </div>
+          </article>
+          <article class="lab-orbit-card">
+            <div class="lab-orbit-glow"></div>
+            <div class="project-thumb-placeholder"></div>
+            <span class="project-tag tag-concept">Concept</span>
+            <h3>Nova System</h3>
+            <p>An experimental physics engine exploring orbital mechanics on the web.</p>
+            <div class="lab-cta-wrap">
+              <a href="#lab" class="orbit-cta">Enter System &rarr;</a>
+            </div>
+          </article>
+          <article class="lab-orbit-card">
+            <div class="lab-orbit-glow"></div>
+            <div class="project-thumb-placeholder"></div>
+            <span class="project-tag tag-progress">In Progress</span>
+            <h3>Stellar Forge</h3>
+            <p>A procedural generation tool for creating dynamic starfield backgrounds.</p>
+            <div class="lab-cta-wrap">
+              <a href="#lab" class="orbit-cta">Enter System &rarr;</a>
+            </div>
+          </article>
+          <article class="lab-orbit-card">
+            <div class="lab-orbit-glow"></div>
+            <div class="project-thumb-placeholder"></div>
+            <span class="project-tag">Archive</span>
+            <h3>Quantum Terminal</h3>
+            <p>A web-based command line interface featuring synthetic cosmic datasets.</p>
+            <div class="lab-cta-wrap">
+              <a href="#lab" class="orbit-cta">Enter System &rarr;</a>
+            </div>
+          </article>
+          <div class="lab-end-indicator">
+            <span>Continue Exploring the Universe</span>
+            <div class="end-arrow">&rarr;</div>
+          </div>
+        </div>
       </div>
     </section>
 
