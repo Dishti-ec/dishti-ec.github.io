@@ -9,14 +9,24 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 
 <body>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="index.html#notes">Notes</a>
-        <a href="index.html#lab">Lab</a>
+        <div class="nav-links">
+            <a href="../index.html" class="stardust-hover">Home</a>
+            <a href="../index.html#notes" class="stardust-hover">Notes</a>
+            <a href="../index.html#blog" class="stardust-hover">Blog</a>
+            <a href="../index.html#lab" class="stardust-hover active">Lab</a>
+        </div>
+        <label class="theme-toggle" title="Toggle theme">
+            <input type="checkbox" id="theme-switch">
+            <span class="toggle-slider">
+                <span class="toggle-icon moon">🌙</span>
+                <span class="toggle-icon sun">☀️</span>
+            </span>
+        </label>
     </nav>
 
     <header class="hero">
@@ -54,14 +64,14 @@
             </p>
         </section>
 
-        <p style="margin-top:28px;"><a class="plain-link" href="index.html">← Back to portfolio</a></p>
+        <p style="margin-top:28px;"><a class="plain-link" href="../index.html">← Back to portfolio</a></p>
     </main>
 
     <footer>
         <p>&copy; 2026 DISHTI — Portfolio Website</p>
     </footer>
 
-    <script src="js/index.js" defer></script>
+    <script src="../../js/index.js" defer></script>
 </body>
 
 </html>

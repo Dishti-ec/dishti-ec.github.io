@@ -29,8 +29,8 @@ window.addEventListener('load', function () {
   createSmallPlanets();
   createNebulas();
   startShootingStars();
-  initConstellations();
   initStarParallax();
+  initLabOrbitScroll();
 
   // Mark page as loaded for animations
   document.body.classList.add('loaded');
@@ -974,4 +974,50 @@ function initTypingEffect() {
 
   // Start after hero animation delay
   setTimeout(tick, 2600);
+}
+
+// ── Horizontal Orbit Scroll Logic ──
+function initLabOrbitScroll() {
+  const scrollSection = document.querySelector('.lab-scroll-section');
+  const track = document.getElementById('lab-track');
+  const cards = document.querySelectorAll('.lab-orbit-card');
+  
+  if (!scrollSection || !track || cards.length === 0) return;
+  
+  function updateScroll() {
+    const sectionTop = scrollSection.getBoundingClientRect().top;
+    const maxScroll = scrollSection.offsetHeight - window.innerHeight;
+    
+    let progress = 0;
+    if (sectionTop <= 0) {
+      progress = Math.min(1, Math.abs(sectionTop) / maxScroll);
+    }
+    
+    const trackWidth = track.scrollWidth;
+    const viewportWidth = window.innerWidth;
+    const maxTranslate = Math.max(0, trackWidth - viewportWidth);
+    
+    const translateX = progress * maxTranslate;
+    track.style.transform = `translate3d(-${translateX}px, 0, 0)`;
+    
+    const centerScreen = viewportWidth / 2;
+    
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.left + (rect.width / 2);
+      const distance = Math.abs(centerScreen - cardCenter);
+      
+      if (distance < 280) {
+        card.classList.add('focused');
+      } else {
+        card.classList.remove('focused');
+      }
+    });
+  }
+  
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  window.addEventListener('resize', updateScroll, { passive: true });
+  
+  // Trigger initially to set classes
+  setTimeout(updateScroll, 100);
 }

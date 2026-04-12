@@ -1334,6 +1334,10 @@ header {
   gap: 24px;
   overflow: visible;
   min-height: 85vh;
+  background-image: url("../assets/images/stars.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .hero .header-content {
@@ -2381,7 +2385,7 @@ body.custom-cursor-active .timeline-content {
   min-height: 70vh;
   overflow: hidden;
   z-index: 10;
-  background-image: url("images/stars.jpg");
+  background-image: url("../assets/images/stars.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2870,6 +2874,132 @@ body.custom-cursor-active .timeline-content {
 
 .note-card.delay-200 {
   transition-delay: 0.2s;
+}
+
+/* ============================================================
+   LAB HORIZONTAL ORBIT SCROLL
+   ============================================================ */
+
+.lab-scroll-section {
+  height: 400vh;
+  position: relative;
+  z-index: 10;
+}
+
+.lab-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lab-orbit-title {
+  position: absolute;
+  top: 15vh;
+  left: 10vw;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: #7ee7ff;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lab-track {
+  display: flex;
+  align-items: center;
+  gap: 8vw;
+  padding-left: calc(50vw - 175px);
+  padding-right: calc(50vw - 175px);
+  height: max-content;
+  will-change: transform;
+}
+
+.lab-orbit-card {
+  position: relative;
+  width: 350px;
+  min-width: 350px;
+  flex-shrink: 0;
+  background: rgba(10, 15, 25, 0.4);
+  border: 1px solid rgba(126, 231, 255, 0.1);
+  border-radius: 16px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  transform-style: preserve-3d;
+  transition: opacity 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease;
+  opacity: 0.4;
+  /* Transform is applied heavily by JS */
+}
+
+.lab-orbit-card:nth-child(odd) {
+  margin-top: -160px;
+}
+
+.lab-orbit-card:nth-child(even) {
+  margin-top: 160px;
+}
+
+.lab-orbit-glow {
+  position: absolute;
+  inset: -1px;
+  border-radius: 16px;
+  background: radial-gradient(circle at center, rgba(126, 231, 255, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Styles applied dynamically by JS based on center proximity */
+.lab-orbit-card.focused {
+  border-color: rgba(126, 231, 255, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(126, 231, 255, 0.15);
+}
+
+.lab-orbit-card.focused .lab-orbit-glow {
+  opacity: 1;
+}
+
+.orbit-cta {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 24px;
+  border: 1px solid #7ee7ff;
+  border-radius: 30px;
+  color: #7ee7ff;
+  font-family: 'Orbitron', sans-serif;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.lab-orbit-card.focused .orbit-cta {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.orbit-cta:hover {
+  background: rgba(126, 231, 255, 0.15);
+  box-shadow: 0 0 15px rgba(126, 231, 255, 0.4);
+}
+
+.project-thumb-placeholder {
+  width: 100%;
+  height: 180px;
+  background: rgba(255,255,255,0.05);
+  border: 1px dashed rgba(255,255,255,0.2);
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 /* ── Responsive ── */

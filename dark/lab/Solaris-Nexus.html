@@ -9,62 +9,156 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/lab.css">
 </head>
 
 <body>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="index.html#notes">Notes</a>
-    <a href="index.html#lab">Lab</a>
+    <div class="nav-links">
+      <a href="../index.html" class="stardust-hover">Home</a>
+      <a href="../index.html#notes" class="stardust-hover">Notes</a>
+      <a href="../index.html#blog" class="stardust-hover">Blog</a>
+      <a href="../index.html#lab" class="stardust-hover active">Lab</a>
+    </div>
+    <label class="theme-toggle" title="Toggle theme">
+      <input type="checkbox" id="theme-switch">
+      <span class="toggle-slider">
+        <span class="toggle-icon moon">🌙</span>
+        <span class="toggle-icon sun">☀️</span>
+      </span>
+    </label>
   </nav>
 
-  <header class="hero">
+  <!-- 1. HERO -->
+  <header class="lab-hero">
+    <div class="lab-hero-visual"></div>
     <div class="header-content">
-      <p class="small-intro">Lab Project • Energy Saving Experiment</p>
       <h1 class="fade-up title">Solaris Nexus</h1>
-      <hr style="width:60%;">
-      <p class="fade-up subtitle">An experimental playground for generating, harnessing, and storing solar energy.</p>
+      <p class="lab-hook fade-up">An exploration of interactive cosmic systems</p>
     </div>
   </header>
 
   <main class="container">
-    <section id="overview">
-      <h2>Overview</h2>
-      <p>
-        Solaris Nexus is an exploratory project focused on crafting small interactive experiences using HTML, CSS, and
-        vanilla JavaScript.
-        This lab captures ideas around starfield visuals, cursor micro-interactions, and responsive layout experiments.
-        The goal is to iterate
-        quickly, document learnings, and surface design decisions that could be reused across other projects.
-      </p>
+    
+    <!-- 2. QUICK INFO STRIP -->
+    <section class="info-strip reveal">
+      <div class="info-item">
+        <span class="info-label">Type</span>
+        <span class="info-val">Web Project</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Status</span>
+        <span class="info-val">In Progress</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Tech</span>
+        <span class="info-val">HTML • CSS • JS</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Duration</span>
+        <span class="info-val">Jan – Feb</span>
+      </div>
     </section>
 
-    <section id="goals">
-      <h2>Goals</h2>
-      <ul class="skills-list">
-        <li>Create a lightweight starfield visual system</li>
-        <li>Design micro-interactions that feel responsive and pleasant</li>
-        <li>Keep performance and accessibility in mind</li>
-      </ul>
+    <!-- Orbit Timeline starting here -->
+    <div class="orbit-timeline">
+      
+      <!-- 3. THE STORY -->
+      <div class="orbit-node reveal">
+        <div class="orbit-point"></div>
+        <div class="orbit-card">
+          <h3>The Story</h3>
+          <p>
+            I've always been fascinated by the quiet vastness of space. I wanted a project not just built with standard components, but one that felt like a living breathing system.
+          </p>
+          <p style="margin-top: 15px;">
+            The spark for Solaris Nexus was a simple curiosity: "How expressive can vanilla CSS and JavaScript get before it starts begging for an heavy external library?" I wanted to prove that immersion doesn't require a 2MB framework. I wanted to tell a story through layout and micro-interactions.
+          </p>
+        </div>
+      </div>
+
+      <!-- 4. THE BUILD -->
+      <div class="orbit-node reveal delay-100">
+        <div class="orbit-point"></div>
+        <div class="orbit-card">
+          <h3>The Build</h3>
+          <h4 style="color:var(--text-muted); margin-bottom:8px;">Concept</h4>
+          <p style="margin-bottom: 20px;">A central cosmic theme serving as a playground for performance-focused vanilla JS physics.</p>
+          
+          <h4 style="color:var(--text-muted); margin-bottom:8px;">Design Decisions</h4>
+          <p style="margin-bottom: 20px;">Opting for soft glassmorphisms and orbit-based timelines instead of rigid squares. Using a deep space gradient instead of pure black to retain depth.</p>
+          
+          <h4 style="color:var(--text-muted); margin-bottom:8px;">Challenges</h4>
+          <p style="margin-bottom: 20px;">Keeping the <code>requestAnimationFrame</code> loop performant when rendering continuous star trails and ensuring mobile layout didn't break during heavy animations.</p>
+          
+          <h4 style="color:var(--text-muted); margin-bottom:8px;">What I Learned</h4>
+          <p>Sometimes the browser itself is your best tool. Pure mathematics combined with CSS transforms can out-perform heavy canvas libraries if constrained properly.</p>
+        </div>
+      </div>
+
+      <!-- 8. REFLECTION -->
+      <div class="orbit-node reveal delay-200">
+        <div class="orbit-point"></div>
+        <div class="orbit-card">
+          <h3>Reflection</h3>
+          <p style="margin-bottom: 15px;">
+            <strong style="color:#7ee7ff;">What worked:</strong> The glassmorphism and subtle glowing node elements turned out beautifully. The aesthetic immediately communicates the "cosmos" vibe without being cliché.
+          </p>
+          <p style="margin-bottom: 15px;">
+            <strong style="color:#7ee7ff;">What didn't:</strong> Initial logic for star arrays was too heavy; calculating thousands of floats on the CPU caused hiccups on low-end devices.
+          </p>
+          <p>
+            <strong style="color:#7ee7ff;">What I'd improve:</strong> I want to migrate the most intensive background starfield rendering directly into WebGL for absolute fluid 120fps motion.
+          </p>
+        </div>
+      </div>
+    </div> <!-- Close orbit timeline -->
+
+    <!-- 5. VISUAL SHOWCASE -->
+    <section class="visual-showcase reveal">
+      <h2 class="slide-in from-left">Visual Layouts</h2>
+      <div class="visual-grid">
+        <div class="visual-large">
+          <span class="placeholder-text">AESTHETIC PREVIEW PLACEHOLDER</span>
+        </div>
+        <div class="visual-row">
+          <div class="visual-small">
+            <span class="placeholder-text">UI COMPONENT</span>
+          </div>
+          <div class="visual-small">
+            <span class="placeholder-text">MICRO-INTERACTION</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="notes">
-      <h2>Progress Notes</h2>
-      <p>
-        The initial prototype includes a header with a starry background and a cursor-follow sparkle effect.
-        Experiment files, code snippets, and screenshots will be added here as the lab evolves.
-      </p>
+    <!-- 6. INTERACTIVE ELEMENT -->
+    <section class="interactive-demo reveal">
+      <h2 class="slide-in from-left">Interactive Demo</h2>
+      <div class="demo-container">
+        <button class="demo-btn">Initialize Warp Sequence</button>
+      </div>
     </section>
 
-    <p style="margin-top:28px;"><a class="plain-link" href="index.html">← Back to portfolio</a></p>
+    <!-- 7. LINKS -->
+    <section class="project-links reveal">
+      <a href="#" class="blog-btn" style="text-decoration: none;">🔗 Live Demo</a>
+      <a href="#" class="blog-btn" style="text-decoration: none; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff;">📂 GitHub Repo</a>
+    </section>
+
+    <!-- 9. NAVIGATION -->
+    <div class="lab-nav reveal">
+      <a href="../index.html#lab" class="plain-link">← Back to Lab</a>
+      <a href="Portfolio-Lab.html" class="plain-link">Next Project →</a>
+    </div>
+
   </main>
 
   <footer>
     <p>&copy; 2026 DISHTI — Solaris Nexus</p>
   </footer>
 
-  <script src="js/index.js" defer></script>
+  <script src="../../js/index.js" defer></script>
 </body>
-
 </html>

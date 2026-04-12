@@ -31,9 +31,19 @@
     <div id="scroll-progress"></div>
 
     <nav id="main-nav">
-        <a href="index-day.html">Home</a>
-        <a href="notes-day.html" class="active">Notes</a>
-        <a href="index-day.html#lab">Lab</a>
+        <div class="nav-links">
+            <a href="index-day.html">Home</a>
+            <a href="notes-day.html" class="active">Notes</a>
+            <a href="index-day.html#blog">Blog</a>
+            <a href="index-day.html#lab">Lab</a>
+        </div>
+        <label class="theme-toggle" title="Toggle theme">
+            <input type="checkbox" id="theme-switch" checked>
+            <span class="toggle-slider">
+                <span class="toggle-icon moon">🌙</span>
+                <span class="toggle-icon sun">☀️</span>
+            </span>
+        </label>
     </nav>
 
     <!-- HERO -->
@@ -223,7 +233,7 @@
         <p>&copy; 2026 DISHTI — Notes (Daylight)</p>
     </footer>
 
-    <script src="js/notes-day.js" defer></script>
+    <script src="../js/notes-day.js" defer></script>
 </body>
 
 </html>
