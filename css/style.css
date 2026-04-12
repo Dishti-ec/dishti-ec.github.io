@@ -25,6 +25,7 @@ body {
   position: relative;
   /* Ensure absolute children reference full height */
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 *,
@@ -1048,6 +1049,7 @@ footer .footer-links a:hover {
 }
 
 /* ── Scroll Down Indicator ── */
+/* Dedicated reveal keeps translateX(-50%) so fadeIn does not strip horizontal centering. */
 .scroll-indicator {
   position: absolute;
   bottom: 32px;
@@ -1056,12 +1058,11 @@ footer .footer-links a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   opacity: 0;
-  animation: fadeIn 1s forwards;
-  animation-delay: 3s;
+  animation: scrollIndicatorRevealDark 0.95s cubic-bezier(0.2, 0.9, 0.2, 1) 2.4s forwards;
   cursor: pointer;
-  z-index: 10;
+  z-index: 25;
   text-decoration: none;
 }
 
@@ -1070,14 +1071,27 @@ footer .footer-links a:hover {
   font-size: 0.6rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(126, 231, 255, 0.5);
+  color: rgba(126, 231, 255, 0.7);
+  text-shadow: 0 0 14px rgba(126, 231, 255, 0.35);
+}
+
+@keyframes scrollIndicatorRevealDark {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 .scroll-indicator-arrow {
   width: 20px;
   height: 20px;
-  border-right: 1px solid rgba(126, 231, 255, 0.5);
-  border-bottom: 1px solid rgba(126, 231, 255, 0.5);
+  border-right: 2px solid rgba(126, 231, 255, 0.55);
+  border-bottom: 2px solid rgba(126, 231, 255, 0.55);
   transform: rotate(45deg);
   animation: arrowBounce 1.5s ease-in-out infinite;
 }
@@ -2880,6 +2894,7 @@ body.custom-cursor-active .timeline-content {
    LAB HORIZONTAL ORBIT SCROLL
    ============================================================ */
 
+/* Full-bleed inside .container so 50vw track padding matches real viewport (fixed card width ~280px). */
 .lab-scroll-section {
   height: 800vh;
   position: relative;
@@ -2887,6 +2902,20 @@ body.custom-cursor-active .timeline-content {
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 0.8s ease, transform 0.8s ease;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.lab-scroll-section > * {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .lab-scroll-section.active {
@@ -2945,6 +2974,8 @@ body.custom-cursor-active .timeline-content {
   position: relative;
   width: 280px;  /* Smaller cards */
   min-width: 280px;
+  max-width: 280px;
+  flex: 0 0 280px;
   flex-shrink: 0;
   background: rgba(10, 15, 25, 0.6); 
   border: 1px solid rgba(126, 231, 255, 0.1);
@@ -2967,6 +2998,38 @@ body.custom-cursor-active .timeline-content {
   /* Dynamic scale from JS */
   scale: var(--card-scale, 1);
   translate: 0 0;
+}
+
+/* Match light / index-day lab card proportions (compact title, body, thumb spacing). */
+.lab-orbit-card h3 {
+  text-align: left;
+  margin: 0 0 10px;
+  max-width: none;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.lab-orbit-card p {
+  text-align: left;
+  margin: 0;
+  max-width: none;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.lab-orbit-card .project-tag {
+  margin: 12px 0 0;
+}
+
+.lab-orbit-card .project-thumb {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  display: block;
 }
 
 .lab-orbit-glow {
@@ -3072,7 +3135,7 @@ body.custom-cursor-active .timeline-content {
   background: rgba(255,255,255,0.05);
   border: 1px dashed rgba(255,255,255,0.2);
   border-radius: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 /* ── Responsive ── */

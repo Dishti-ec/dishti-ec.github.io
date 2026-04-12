@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Portfolio Website — Lab</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/lab.css">
+</head>
+
+<body class="lab-page portfolio-theme">
+  <nav class="lab-site-nav">
+    <div class="nav-links">
+      <a href="../dark/index.html#lab">Home</a>
+      <a href="../dark/index.html#notes">Notes</a>
+      <a href="../dark/index.html#blog">Blog</a>
+      <a href="../dark/index.html#lab" class="active">Lab</a>
+    </div>
+    <label class="theme-toggle" title="Toggle light/dark">
+      <input type="checkbox" id="theme-switch" aria-label="Toggle theme">
+      <span class="toggle-slider">
+        <span class="toggle-icon moon">🌙</span>
+        <span class="toggle-icon sun">☀️</span>
+      </span>
+    </label>
+  </nav>
+
+  <section class="lab-hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-orbit-ring orbit-a" aria-hidden="true"></div>
+    <div class="hero-orbit-ring orbit-b" aria-hidden="true"></div>
+    <div class="portfolio-social-orbit theme-dark-only" aria-label="Social orbit">
+      <a href="https://github.com/dishti-ec" target="_blank" rel="noopener" title="GitHub">⌗</a>
+      <a href="#" title="Blog">✎</a>
+      <a href="#" title="Lab">◈</a>
+    </div>
+    <div class="hero-content">
+      <h1>Personal Portfolio</h1>
+      <p>Cosmic archive — one mind, two atmospheres, infinite small experiments in the margins.</p>
+      <div class="hero-social-row theme-light-only">
+        <a href="https://github.com/dishti-ec" target="_blank" rel="noopener">GitHub</a>
+        <a href="#">Live</a>
+        <a href="#">Docs</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-meta-bar" aria-label="Project meta">
+    <div class="lab-meta-inner">
+      <div class="meta-cluster">
+        <span class="meta-item"><span class="meta-ico">📅</span> <strong>2026</strong></span>
+        <span class="meta-item"><span class="meta-ico">🛠</span> <strong>HTML · CSS · JS</strong></span>
+        <span class="meta-item"><span class="meta-ico">👤</span> <strong>Individual</strong></span>
+      </div>
+      <div class="meta-links">
+        <a href="https://github.com/dishti-ec" target="_blank" rel="noopener">GitHub</a>
+        <span class="meta-sep">|</span>
+        <a href="#">Live</a>
+        <span class="meta-sep">|</span>
+        <a href="#">Docs</a>
+      </div>
+    </div>
+  </section>
+
+  <aside class="lab-social-dock theme-dark-only" aria-label="Quick links">
+    <span class="dock-label">LINK</span>
+    <a href="https://github.com/dishti-ec" target="_blank" rel="noopener" title="GitHub">⌗</a>
+    <a href="#" title="Demo">▶</a>
+    <a href="#" title="Docs">📄</a>
+  </aside>
+
+  <section class="lab-info-strip">
+    <div class="lab-inner">
+      <div class="info-card">
+        <span class="label">Constellation</span>
+        <span class="value">Animations</span>
+      </div>
+      <div class="info-card">
+        <span class="label">Constellation</span>
+        <span class="value">Blog</span>
+      </div>
+      <div class="info-card">
+        <span class="label">Constellation</span>
+        <span class="value">Lab orbit</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-story lab-section">
+    <div class="lab-inner">
+      <div class="story-block reveal-on-scroll">
+        <h2>Drift</h2>
+        <p>Scrolling here should feel like moving through layers — surface copy, then mechanics, then honesty in the lab. Stars react because the page is allowed to be a little alive.</p>
+      </div>
+      <div class="story-block reveal-on-scroll">
+        <h2>Dual reality</h2>
+        <p>Dark and light share bones but not soul: the same routes, two emotional palettes. That constraint is the experiment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-system lab-section">
+    <div class="lab-inner">
+      <div class="system-grid">
+        <div class="system-left">
+          <h2>Modules</h2>
+          <p>Each feature floats as its own card — timeline, blog, lab — loosely coupled like constellations. Shared typography and motion rules stop the chaos from becoming noise.</p>
+        </div>
+        <div class="system-right">
+          <h2>Map</h2>
+          <div class="system-diagram" aria-hidden="true">home → notes → blog → lab</div>
+          <p style="margin-top:1rem;">Theme toggle remembers preference; lab pages mirror the same data-theme contract.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-visuals lab-section">
+    <div class="lab-inner">
+      <h2>Visuals</h2>
+      <div class="visual-grid">
+        <div class="visual-card wide">
+          <span class="placeholder">Hero · dual theme</span>
+        </div>
+        <div class="visual-card">
+          <span class="placeholder">Micro universe A</span>
+        </div>
+        <div class="visual-card">
+          <span class="placeholder">Micro universe B</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lab-reflection lab-section">
+    <div class="lab-inner">
+      <h2>Reflection</h2>
+      <p data-typewriter>The site is the proof: if the archive feels coherent while hosting chaos, the system worked.</p>
+      <p><strong>Stretch:</strong> tighter coupling between blog posts and lab case studies.</p>
+    </div>
+  </section>
+
+  <section class="lab-navigation">
+    <div class="lab-inner">
+      <a class="nav-btn prev" href="Solaris-Nexus.html">← Solaris Nexus</a>
+      <a class="nav-btn next" href="RemoTree.html">RemoTree →</a>
+    </div>
+  </section>
+
+  <footer class="lab-footer">© 2026 Dishti — Portfolio Website</footer>
+  <script src="../js/lab-page.js" defer></script>
+</body>
+
+</html>
