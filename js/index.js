@@ -712,31 +712,7 @@ function initContactForm() {
   });
 }
 
-// ---- Blog System ----
-const blogPosts = [
-  {
-    id: 'intro-to-nova',
-    title: 'Navigating the Nova UI',
-    preview: 'A walkthrough of the space-inspired visual system, handling animation sequences and accessible glow effects.',
-    fullContent: 'In this post, we dive into the design decisions behind the Nova theme: star field depth, glassmorphism overlays, and subtle performance-safe animations. You will learn how to prioritize visual richness without harming accessibility or responsiveness.',
-    date: '2026-03-01'
-  },
-  {
-    id: 'async-constellations',
-    title: 'Async Constellations in Vanilla JS',
-    preview: 'Building performance-friendly constellation systems using requestAnimationFrame and scroll-linked parallax effects.',
-    fullContent: 'This post explains how requestAnimationFrame can be used to sync visual effects and avoid janky motion. It also covers how to keep event listeners clean, avoid memory leaks, and create skip/prefers-reduced-motion fallbacks.',
-    date: '2026-02-16'
-  },
-  {
-    id: 'cosmic-thoughts',
-    title: 'Code, Coffee, and Cosmic Dreams',
-    preview: 'A short narrative on the process of turning late-night ideas into deployable web experiments.',
-    fullContent: 'Sometimes the best ideas arrive on the edge of sleep. This piece explores journaling, rapid prototyping, and capturing creative momentum with minimal dough. Learn how to implement a low-friction notes loop as you build.',
-    date: '2026-01-28'
-  }
-];
-
+// ---- Blog System (posts from ../js/blog-data.js — window.BLOG_POSTS) ----
 const BLOG_STORAGE_KEY = 'cosmicBlogLikes';
 const COMMENT_STORAGE_KEY = 'cosmicBlogComments';
 
@@ -767,6 +743,9 @@ function setBlogComments(comments) {
 function renderBlogCards() {
   const container = document.getElementById('blog-container');
   if (!container) return;
+
+  const blogPosts = window.BLOG_POSTS;
+  if (!blogPosts || !blogPosts.length) return;
 
   const likes = getBlogLikes();
 

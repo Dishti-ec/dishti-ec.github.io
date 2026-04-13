@@ -175,13 +175,7 @@
       onScroll();
     }
 
-    /* ── Blog System ── */
-    const blogPosts = [
-      { id: 'building-cosmic', title: 'Building a Cosmic Portfolio', preview: 'The process behind creating a dark, interactive space-themed personal site using vanilla JS and CSS.', fullContent: 'Building this portfolio was an experiment in restraint and drama. The challenge: how much animation is too much? Starting with a starfield background and custom cursor effects, I discovered that web animation must serve emotion.', date: '2026-03-10' },
-      { id: 'css-grid-secrets', title: 'CSS Grid Secrets I Wish I Knew Earlier', preview: 'Implicit grids, auto-placement algorithms, and the power of minmax(). A deep dive.', fullContent: 'CSS Grid changed how I think about layout. The grid-template-areas property alone is worth learning — it lets you name regions and rearrange them for responsive layouts without media query rewrites.', date: '2026-02-16' },
-      { id: 'cosmic-thoughts', title: 'Code, Coffee, and Cosmic Dreams', preview: 'A short narrative on the process of turning late-night ideas into deployable web experiments.', fullContent: 'Sometimes the best ideas arrive on the edge of sleep. This piece explores journaling, rapid prototyping, and capturing creative momentum with minimal dough.', date: '2026-01-28' }
-    ];
-
+    /* ── Blog System (window.BLOG_POSTS from blog-data.js) ── */
     const BLOG_STORAGE_KEY = 'dayBlogLikes';
     const COMMENT_KEY = 'dayBlogComments';
 
@@ -193,6 +187,8 @@
     function renderBlogCards() {
       const container = document.getElementById('blog-container');
       if (!container) return;
+      const blogPosts = window.BLOG_POSTS;
+      if (!blogPosts || !blogPosts.length) return;
       const likes = getBlogLikes();
       container.innerHTML = '';
       blogPosts.forEach((post, i) => {

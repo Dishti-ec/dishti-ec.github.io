@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style-day.css">
+  <link rel="stylesheet" href="../css/blog-system.css">
+  <script src="../js/blog-data.js"></script>
 </head>
 
 <body>
@@ -91,10 +93,19 @@
 
     <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
 
-    <section id="blog" class="reveal">
-      <h2 class="slide-in from-left">Sunny Blog</h2>
-      <p class="blog-subtitle"> ---> A warm cluster of thoughts, updates, and golden hour code notes.</p>
-      <div id="blog-container" class="blog-grid"></div>
+    <section id="blog" class="reveal blog-orbit-section">
+      <p class="blog-orbit-eyebrow">FROM THE BLOG</p>
+      <div id="thought-orbit-root" data-blog-base="../blog/">
+        <div class="orbit-stage">
+          <div class="orbit-field" aria-hidden="true"></div>
+          <a href="blog/index-day.html" class="orbit-core" id="orbit-core-cta">
+            <span class="orbit-core-title">THOUGHTS</span>
+            <span class="orbit-core-sub">in motion</span>
+            <span class="orbit-core-enter">enter archive</span>
+          </a>
+        </div>
+      </div>
+      <p class="blog-orbit-tagline">Not all ideas become projects.</p>
     </section>
 
     <div class="star-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
@@ -335,6 +346,7 @@
   </footer>
 
   <script src="../js/script-day.js"></script>
+  <script defer src="../js/blog-orbit.js"></script>
 </body>
 
 </html>

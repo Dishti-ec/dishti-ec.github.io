@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" class="blog-layout" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thought Archive — Dishti Patel</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&family=Orbitron:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/blog-system.css">
+</head>
+
+<body class="blog-archive-page">
+  <nav class="blog-nav" aria-label="Blog">
+    <div class="blog-nav-links">
+      <a href="../dark/index.html">Portfolio</a>
+      <a href="index.html" aria-current="page">Thought Archive</a>
+    </div>
+    <label class="theme-toggle" title="Open light theme archive">
+      <input type="checkbox" id="theme-switch">
+      <span class="toggle-slider">
+        <span class="toggle-icon moon">🌙</span>
+        <span class="toggle-icon sun">☀️</span>
+      </span>
+    </label>
+  </nav>
+
+  <header class="blog-archive-hero">
+    <h1>Thought Archive</h1>
+    <p class="blog-archive-dek">ideas, experiments, reflections</p>
+  </header>
+
+  <div class="blog-filter-row" role="toolbar" aria-label="Sort ideas by category">
+    <button type="button" class="blog-filter-btn is-active" data-filter="all">All</button>
+    <button type="button" class="blog-filter-btn" data-filter="tech">Tech</button>
+    <button type="button" class="blog-filter-btn" data-filter="thoughts">Thoughts</button>
+    <button type="button" class="blog-filter-btn" data-filter="experiments">Experiments</button>
+  </div>
+
+  <div id="blog-archive-grid" class="blog-archive-masonry"></div>
+
+  <script src="../js/blog-data.js"></script>
+  <script defer src="../js/blog-archive.js"></script>
+  <script>
+    (function () {
+      var sw = document.getElementById('theme-switch');
+      if (!sw) return;
+      sw.checked = false;
+      sw.addEventListener('change', function () {
+        if (sw.checked) window.location.href = '../light/blog/index-day.html';
+      });
+    })();
+  </script>
+</body>
+
+</html>
