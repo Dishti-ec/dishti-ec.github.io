@@ -79,10 +79,11 @@ function createFloatingStars() {
       wrapper.style.width = `${size}px`;
       wrapper.style.height = `${size}px`;
 
-      // Assign Random Parallax Speeds (Scatter effect)
-      // Range: -0.5 to 0.5 for Y, -0.3 to 0.3 for X
-      const speedY = (Math.random() - 0.5) * 0.8;
-      const speedX = (Math.random() - 0.5) * 0.4;
+      // Assign parallax speeds. Set to 0 to lock stars in place and avoid
+      // cursor/scroll-driven jitter. If you want subtle depth later, use
+      // small values like 0.02.
+      const speedY = 0;
+      const speedX = 0;
 
       wrapper.dataset.speedY = speedY;
       wrapper.dataset.speedX = speedX;
@@ -93,12 +94,15 @@ function createFloatingStars() {
       const color = colors[Math.floor(Math.random() * colors.length)];
       star.style.backgroundColor = color;
 
-      // Animation timings
-      const floatDuration = Math.random() * 20 + 20;
-      const pulseDuration = Math.random() * 4 + 2;
-      const delay = Math.random() * 5;
+      // Animation timings — keep a slow pulse and add a long, randomized
+      // shine/fade so stars sometimes brighten then fade out.
+      const pulseDuration = Math.random() * 6 + 6; // 6s - 12s
+      const pulseDelay = Math.random() * 8;
 
-      star.style.animation = `floatAround ${floatDuration}s infinite linear ${delay}s, pulseGlow ${pulseDuration}s infinite alternate ease-in-out ${delay}s`;
+      const shineDuration = Math.random() * 20 + 20; // 20s - 40s
+      const shineDelay = Math.random() * 30;
+
+      star.style.animation = `pulseGlow ${pulseDuration}s infinite alternate ease-in-out ${pulseDelay}s, shineFade ${shineDuration}s infinite linear ${shineDelay}s`;
 
       wrapper.appendChild(star);
       container.appendChild(wrapper);
@@ -142,11 +146,9 @@ function createSmallPlanets() {
     wrapper.style.width = `${size}px`;
     wrapper.style.height = `${size}px`;
 
-    // Parallax Speed (Slower than stars for depth)
-    const speedY = (Math.random() - 0.5) * 0.2;
-    const speedX = (Math.random() - 0.5) * 0.1;
-    wrapper.dataset.speedY = speedY;
-    wrapper.dataset.speedX = speedX;
+    // Parallax Speed (keep planets static to avoid jitter)
+    wrapper.dataset.speedY = 0;
+    wrapper.dataset.speedX = 0;
 
     const planet = document.createElement('div');
     planet.classList.add('small-planet');
@@ -178,9 +180,10 @@ function initStarParallax() {
     const dt = Math.max(1, now - lastT);
     const dy = scrollY - lastScrollY;
     const speedPxPerS = Math.abs(dy) / dt * 1000;
-    // 0..1 intensity once you scroll ~1500px/s
-    const intensity = Math.min(speedPxPerS / 1500, 1);
-    warpFactor = 1 + (intensity * 2.5); // 1..3.5
+    // Reduce sensitivity: 0..1 intensity once you scroll ~3000px/s
+    const intensity = Math.min(speedPxPerS / 3000, 1);
+    // smaller added warp so stars don't visibly stretch or jump
+    warpFactor = 1 + (intensity * 1.0); // 1..2
     lastT = now;
     lastScrollY = scrollY;
   }
@@ -220,16 +223,17 @@ function initStarParallax() {
       planet.style.transform = `translate3d(0, ${scrollY * 0.05}px, 0)`;
     }
 
-    // 2. Stars Parallax + Warp
+    // 2. Stars Parallax + Warp — with reduced impact. If dataset speeds are
+    // zero, this will be a no-op and stars remain locked.
     wrappers.forEach(wrapper => {
       const speedY = parseFloat(wrapper.dataset.speedY || 0);
       const speedX = parseFloat(wrapper.dataset.speedX || 0);
 
       const yOffset = scrollY * speedY * currentWarp;
-      const xOffset = scrollY * speedX * 0.5 * currentWarp;
+      const xOffset = scrollY * speedX * 0.2 * currentWarp;
 
-      // Stretch stars when warping
-      const scale = 1 + (currentWarp - 1) * 0.5;
+      // Subtle scale during warp (very small)
+      const scale = 1 + (currentWarp - 1) * 0.12;
 
       wrapper.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0) scale(${scale})`;
     });
@@ -398,13 +402,13 @@ function startShootingStars() {
       star.remove();
     }, duration * 1000);
 
-    // Schedule next
-    const nextSpawn = Math.random() * 5000 + 3000; // 3-8s (More frequent)
+    // Schedule next (rarer)
+    const nextSpawn = Math.random() * 30000 + 15000; // 15-45s
     setTimeout(spawn, nextSpawn);
   }
 
-  // Initial delay
-  setTimeout(spawn, 2000);
+  // Initial delay (longer to avoid immediate motion)
+  setTimeout(spawn, 8000);
 }
 
 // Feature 3: Constellations (Mouse Connections)
